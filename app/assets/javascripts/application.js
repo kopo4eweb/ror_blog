@@ -13,4 +13,12 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require jquery/index
+//= require bootstrap/bootstrap.min
+//= require popper/popper.min
+//= require owlcarousel/owl.carousel.min
+//= require aos/aos.min
+//= require scrollax/scrollax.min
+//= require ./google-map
+//= require ./main
 //= require_tree .
