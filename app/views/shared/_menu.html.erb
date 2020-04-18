@@ -1,7 +1,7 @@
 <nav id="colorlib-main-menu" role="navigation">
   <ul>
     <% menus.each do |menu|  %>
-      <li <%= "class=colorlib-active" if current_page?(menu.url) %> ><a href="<%= menu.url %>" <%= "target=#{menu.target}" if !menu.target.nil? && !menu.target.empty?  %> data-turbolinks="false"><%= menu.title %></a></li>
+      <li <%= "class=colorlib-active" if current_page?(menu.url) %> ><a href="<%= menu.url %>" <%= "target=#{menu.target}" if !menu.target.nil? && !menu.target.empty?  %>><%= menu.title %></a></li>
     <% end %>
   </ul>
 </nav>
