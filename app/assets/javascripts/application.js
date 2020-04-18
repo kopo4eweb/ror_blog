@@ -19,6 +19,5 @@
 //= require owlcarousel/owl.carousel.min
 //= require aos/aos.min
 //= require scrollax/scrollax.min
-//= require ./google-map
 //= require ./main
 //= require_tree .
