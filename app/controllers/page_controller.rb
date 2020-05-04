@@ -1,10 +1,7 @@
 class PageController < ApplicationController
-    def index
-    end
-
     def about
         @hideSubscribeInSidebar = true
-        end
+    end
 
     def contact
         @hideSubscribeInSidebar = true
