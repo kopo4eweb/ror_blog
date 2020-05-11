@@ -1,0 +1,40 @@
+ru:
+  site:
+    name: 'Blog'
+    admin: 'Админ Панель'
+
+  common:
+    errors: 'При заполнении формы возникли ошибки'
+    back: 'Назад'
+
+  main_nav:
+    new_post: 'Новая пост'
+    page_posts: 'Все посты'
+
+  posts:
+    index:
+      title: 'Посты'
+    post:
+      edit: 'Изменить'
+      destroy: 'Удалить'
+      confirm: 'Вы уверены?'
+
+    new:
+      title: 'Новый опст'
+    edit:
+      title: 'Редактирование поста'
+    form:
+      submit:
+        '%{action} пост'
+      create: 'Создать'
+      update: 'Изменить'
+
+    controller:
+      create:
+        success: 'Пост успешно добавлен'
+        danger: 'Пост не создан'
+      update:
+        success: 'Пост успешно обновлен'
+        danger: 'Пост не обновлен'
+      destroy:
+        success: 'Пост успешно удален'

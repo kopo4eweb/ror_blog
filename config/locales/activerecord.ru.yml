@@ -1,0 +1,16 @@
+ru:
+  activerecord:
+    models:
+      post: 'Пост'
+
+    attributes:
+      post:
+        title: 'Название'
+        preview: 'Краткое содержание'
+        content: 'Содержание'
+        img: 'Изображение поста'
+
+    errors:
+      messages:
+        blank: 'не может быть пустым'
+        required: 'обязательно для заполнения'
