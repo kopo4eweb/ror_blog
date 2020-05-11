@@ -20,7 +20,7 @@ ru:
       confirm: 'Вы уверены?'
 
     new:
-      title: 'Новый опст'
+      title: 'Новый пост'
     edit:
       title: 'Редактирование поста'
     form:
