@@ -8,10 +8,15 @@
       color: #fff;
       border-color: #4bc9ff;
       background-color: #4bc9ff;
+
+      &.disabled {
+        color: #bfbfbf;
+      }
     }
+
     &.disabled {
-      color: #6c757d;
-      border-color: #6c757d;
+      color: #bfbfbf;
+      border-color: #bfbfbf;
       background-color: transparent;
     }
   }
