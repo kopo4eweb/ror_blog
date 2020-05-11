@@ -1,0 +1,23 @@
+<%= form_for @post, html: { multipart: true } do |f| %>
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :preview %>
+    <%= f.text_area :preview, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :content %>
+    <%= f.text_area :content, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :img %><br>
+    <%= image_tag @post.img.url(:thumb) if @post.img? %><br>
+    <%= f.file_field :img %>
+  </div>
+  <div class="form-group">
+    <%= f.submit t('.submit', action: @post.new_record? ? t('.create') : t('.update')), class: 'btn btn-primary' %>
+    <%= link_to t('common.back'), :back, class: 'btn btn-outline-secondary' %>
+  </div>
+<% end %>

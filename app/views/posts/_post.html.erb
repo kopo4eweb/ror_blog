@@ -3,6 +3,7 @@
     <a href="<%= post_path(post) %>" class="img img-2" style="background-image: url(<%= post.img %>);"></a>
     <div class="text text-2 pl-md-4">
       <h3 class="mb-2"><a href="<%= post_path(post) %>"><%= post.title %></a></h3>
+      <%= link_to 'edit', edit_post_path(post) %>
       <div class="meta-wrap">
         <p class="meta">
           <span><i class="icon-calendar mr-2"></i>June 28, 2019</span>
