@@ -1,0 +1,17 @@
+<div class="col-md-12">
+  <div class="blog-entry ftco-animate d-md-flex">
+    <a href="<%= post_path(post) %>" class="img img-2" style="background-image: url(<%= post.img %>);"></a>
+    <div class="text text-2 pl-md-4">
+      <h3 class="mb-2"><a href="<%= post_path(post) %>"><%= post.title %></a></h3>
+      <div class="meta-wrap">
+        <p class="meta">
+          <span><i class="icon-calendar mr-2"></i>June 28, 2019</span>
+          <span><a href="#"><i class="icon-folder-o mr-2"></i>Travel</a></span>
+          <span><i class="icon-comment2 mr-2"></i>5 Comment</span>
+        </p>
+      </div>
+      <p class="mb-4"><%= post.preview %></p>
+      <p><a href="<%= post_path(post) %>" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
+    </div>
+  </div>
+</div>

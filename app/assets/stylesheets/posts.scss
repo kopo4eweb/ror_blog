@@ -1,3 +1,18 @@
 // Place all the styles related to the Posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.block-27 {
+  a {
+    &:hover {
+      color: #fff;
+      border-color: #4bc9ff;
+      background-color: #4bc9ff;
+    }
+    &.disabled {
+      color: #6c757d;
+      border-color: #6c757d;
+      background-color: transparent;
+    }
+  }
+}
