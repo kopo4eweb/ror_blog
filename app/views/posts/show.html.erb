@@ -4,7 +4,7 @@
       <div class="col-lg-8 px-md-5 py-5">
         <div class="row pt-md-4">
           <h1 class="mb-3"><%= @post.title %></h1>
-          <%= @post.content %>
+          <%= @post.content.html_safe %>
           <div class="tag-widget post-tag-container mb-5 mt-5">
             <div class="tagcloud">
               <a href="#" class="tag-cloud-link">Life</a>

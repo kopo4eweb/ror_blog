@@ -47,3 +47,10 @@ Implementation a simple blog using a ready-made template
     7. Add to model Posts `mount_uploader :image, ImageUploader`
     8. Add new / edit form field `<%= f.file_field :img %>`
     9. Output on a page `style="<%= "background-image: url(#{post.img.url(:medium)});" if post.img? %>"` or `<%= image_tag @post.img.url(:thumb) if @post.img? %>`
+    
+3. `trix-rails` - WYSIWYG Editor
+    1. Add to Gemfile `gem 'trix-rails', require: 'trix'`
+    2. Run `bundle install`
+    3. Add `<%= f.trix_editor :content, class: 'editor' %>` to edit form instead `<%= f.text_area :content, class: 'form-control' %>`
+    4. Require JS `//= require trix` and CSS `*= require trix` of Trix to access app
+    5. Output `<%= @post.content.html_safe %>`  

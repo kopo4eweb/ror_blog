@@ -20,6 +20,7 @@
  *= require flaticon/flaticon
  *= require icomoon/icomoon
  *= require ./style
+ *= require trix
  *= require_tree .
  *= require_self
  */

@@ -20,4 +20,5 @@
 //= require aos/aos.min
 //= require scrollax/scrollax.min
 //= require ./main
+//= require trix
 //= require_tree .
