@@ -2,7 +2,7 @@
 
 Implementation a simple blog using a ready-made template
 
-##Gems:
+## Gems:
 
 1. `will_paginate`
 
