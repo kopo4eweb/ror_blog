@@ -54,3 +54,87 @@ Implementation a simple blog using a ready-made template
     3. Add `<%= f.trix_editor :content, class: 'editor' %>` to edit form instead `<%= f.text_area :content, class: 'form-control' %>`
     4. Require JS `//= require trix` and CSS `*= require trix` of Trix to access app
     5. Output `<%= @post.content.html_safe %>`  
+    
+4. AJAX upload files to Trix Editor
+    1. Create model `rails g model Picture image:string`
+    2. Run `rake db:migrate`
+    3. Add to model Pictures `mount_uploader :image, ImageUploader`
+    4. Create controller `rails g controller Pictures`
+    5. Add methods at this controller
+        ```ruby
+         def create
+           @picture = Picture.new(image_params)
+           @picture.save
+           respond_to do |format|
+             format.json { render :json => { url: @picture.image.url(:large), picture_id: @picture.id } }
+           end
+         end
+       
+         def destroy
+           picture = Picture.find(params[:id])
+           picture.destroy
+           respond_to do |format|
+             format.json { render json: { status: :ok} }
+           end
+         end
+       
+         private
+       
+         def image_params
+           params.require(:picture).permit(:image)
+         end
+        ``` 
+   6. Add coffee script for ajax
+        ```coffeescript
+        $ ->
+          document.addEventListener 'trix-attachment-add', (event) ->
+            attachment = event.attachment
+            if attachment.file
+              return sendFile(attachment)
+            return
+        
+          document.addEventListener 'trix-attachment-remove', (event) ->
+            attachment = event.attachment
+            deleteFile attachment
+        
+          sendFile = (attachment) ->
+            token = getToken()
+        
+            file = attachment.file
+            form = new FormData
+            form.append 'Content-Type', file.type
+            form.append 'picture[image]', file
+            xhr = new XMLHttpRequest
+            xhr.open 'POST', '/pictures', true
+            xhr.setRequestHeader("X-CSRF-Token", token);
+        
+            xhr.upload.onprogress = (event) ->
+              progress = undefined
+              progress = event.loaded / event.total * 100
+              attachment.setUploadProgress progress
+        
+            xhr.onload = ->
+              response = JSON.parse(@responseText)
+              attachment.setAttributes
+                url: response.url
+                picture_id: response.picture_id
+                href: response.url
+        
+            xhr.send form
+        
+          deleteFile = (n) ->
+            token = getToken()
+            $.ajax
+              method: 'DELETE'
+              url: '/pictures/' + n.attachment.attributes.values.picture_id
+              headers: {"X-CSRF-Token": token}
+              cache: false
+              contentType: false
+              processData: false
+        
+          getToken = () ->
+            $('meta[name="csrf-token"]').attr('content')
+        
+          return
+        ```
+    7. Add resources in routes file `resources :pictures, only: [:create, :destroy]`
