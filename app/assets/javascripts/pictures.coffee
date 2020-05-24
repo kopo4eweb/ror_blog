@@ -2,6 +2,9 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
+
+  Trix.config.attachments.preview.caption = { name: false, size: false }
+
   document.addEventListener 'trix-attachment-add', (event) ->
     attachment = event.attachment
     if attachment.file
