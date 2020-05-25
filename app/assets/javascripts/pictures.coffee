@@ -2,7 +2,6 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
-
   Trix.config.attachments.preview.caption = { name: false, size: false }
 
   document.addEventListener 'trix-attachment-add', (event) ->
@@ -36,7 +35,7 @@ $ ->
       attachment.setAttributes
         url: response.url
         picture_id: response.picture_id
-        href: response.url
+        #href: response.url # enabled create link for img
 
     xhr.send form
 
