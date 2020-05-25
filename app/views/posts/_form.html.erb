@@ -9,12 +9,17 @@
   </div>
   <div class="form-group">
     <%= f.label :content %>
+    <%= f.text_area :content, class: 'form-control' %>
     <%= f.trix_editor :content, class: 'editor' %>
   </div>
   <div class="form-group">
     <%= f.label :img %><br>
     <%= image_tag @post.img.url(:thumb) if @post.img? %><br>
     <%= f.file_field :img %>
+  </div>
+  <div class="form-group">
+    <%= f.label :all_tags %>
+    <%= f.text_field :all_tags, class: 'form-control' %>
   </div>
   <div class="form-group">
     <%= f.submit t('.submit', action: @post.new_record? ? t('.create') : t('.update')), class: 'btn btn-primary' %>

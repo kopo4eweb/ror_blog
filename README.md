@@ -141,3 +141,60 @@ Implementation a simple blog using a ready-made template
           return
         ```
     7. Add resources in routes file `resources :pictures, only: [:create, :destroy]`
+    
+5. Tags for Post
+    1. Create model Tag `rails g model Tag name:string`
+    2. Create model Tagging `rails g model Tagging post:belongs_to tag:belongs_to`
+    3. Run `rake db:migrate`
+    4. Add relationships Tag and Post in model Post
+         ```ruby
+         has_many :taggings, dependent: :destroy
+         has_many :tags, through: :taggings
+       
+         def all_tags
+           self.tags.map(&:name).join(', ')
+         end
+       
+         def all_tags=(names)
+           self.tags = names.split(',').map do |name|
+             Tag.where(name: name.strip).first_or_create
+           end
+         end  
+       ```
+    5. Add relationships to Tag
+        ```ruby
+         has_many :taggings
+         has_many :posts, through: :taggings 
+        ```
+    6. Add controller Tag `rails g controller Tags`
+    7. Add Tag controller handler show
+        ```ruby
+            def show
+              @tag = Tag.find_by(name: params[:id])
+              @posts = @tag.posts
+            end
+       ```
+    8. Add view show `show.html.erb` for Tag
+       ```html
+        <h1><%= @tag.name %></h1>
+        
+        <% if @tag.posts.empty? %>
+          <h2>There are no page</h2>
+        <% else %>
+          <%= render @tag.posts %>
+        <% end %>
+       ```
+    9. Add input for Tags in form edit/new Post
+        ```html
+        <div class="form-group">
+          <%= f.label :all_tags %>
+          <%= f.text_field :all_tags, class: 'form-control' %>
+        </div>
+        ```
+    10. Add to Post controller field `:all_tags` in method `post_params` in `permit` 
+       
+    11. Output tags on a detail page post
+        ```html
+           <%= raw post.tags.map(&:name).map { |t| link_to t, tag_path(t), class: 'tag-cloud-link' }.join(' ') %>
+        ``` 
+    12. Add rule in route file `resources :tags, only: [:show]`
