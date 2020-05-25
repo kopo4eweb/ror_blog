@@ -198,3 +198,24 @@ Implementation a simple blog using a ready-made template
            <%= raw post.tags.map(&:name).map { |t| link_to t, tag_path(t), class: 'tag-cloud-link' }.join(' ') %>
         ``` 
     12. Add rule in route file `resources :tags, only: [:show]`
+    
+6. Tag Cloud
+    1. Add to model Tag new method
+        ```ruby
+         def self.counts
+           self.select('name, count(taggings.tag_id) as count').joins(:taggings).group('taggings.tag_id')
+         end 
+       ```
+    2. Output tag in sidebar
+        ```html
+             <% if Tag.counts.any? %>
+               <div class="sidebar-box ftco-animate">
+                 <h3 class="sidebar-heading">Tag Cloud</h3>
+                 <ul class="tagcloud">
+                   <% Tag.counts.each do |tag| %>
+                     <%= link_to tag.name, tag_path(tag.name), class: 'tag-cloud-link' %>
+                   <% end %>
+                 </ul>
+               </div>
+             <% end %>        
+        ```
