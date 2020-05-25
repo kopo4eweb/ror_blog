@@ -87,6 +87,9 @@ Implementation a simple blog using a ready-made template
    6. Add coffee script for ajax
         ```coffeescript
         $ ->
+        
+          Trix.config.attachments.preview.caption = { name: false, size: false } # for disable show filename and size under image
+      
           document.addEventListener 'trix-attachment-add', (event) ->
             attachment = event.attachment
             if attachment.file
